@@ -11,7 +11,6 @@ sudo apt update -y
 apt-cache policy docker-ce
 sudo apt install docker-ce -y
 sudo usermod -aG docker ${USER}
-su - ${USER}
 
 # Setup kubectl
 echo '\n-------------------------- Install Kubectl --------------------------'
@@ -29,16 +28,18 @@ curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 # Creating Cluster
 echo '\n-------------------------- Creating Cluster --------------------------'
 sleep 10
-k3d cluster create my-cluster --port 80:80@loadbalancer --port 443:443@loadbalancer
+sudo k3d cluster create my-cluster --port 80:80@loadbalancer --port 443:443@loadbalancer
 
 # Creating Namespace
 echo '\n-------------------------- Creating Namespace --------------------------'
 sleep 10
-kubectl create namespace argocd
+sudo kubectl create namespace argocd
+sudo kubectl create namespace dev
 
 
 # Creating Namespace
 echo '\n-------------------------- Applying Config --------------------------'
 sleep 50
-kubectl apply -n argocd -f install.yaml
-kubectl apply -n argocd -f ingress.yaml
+sudo kubectl apply -n argocd -f install.yaml
+sudo kubectl apply -n argocd -f ingress.yaml
+sudo kubectl apply -n argocd -f argo-application.yaml
