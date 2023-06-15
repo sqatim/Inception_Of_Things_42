@@ -40,6 +40,6 @@ sudo kubectl create namespace dev
 # Creating Namespace
 echo '\n-------------------------- Applying Config --------------------------'
 sleep 50
-sudo kubectl apply -n argocd -f install.yaml
-sudo kubectl apply -n argocd -f ingress.yaml
-sudo kubectl apply -n argocd -f argo-application.yaml
+sudo kubectl apply -n argocd -f ../confs/install.yaml
+sudo kubectl apply -n argocd -f ../confs/ingress.yaml
+sudo kubectl apply -n argocd -f ../confs/argo-application.yaml
