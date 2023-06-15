@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: sqatim/app:v2
+        image: sqatim/bonus:v1
         ports:
         - containerPort: 80
 
