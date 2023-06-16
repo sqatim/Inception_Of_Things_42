@@ -4,7 +4,7 @@ metadata:
   name: app-argo-application
   namespace: argocd
 spec:
-  project: default
+  project: development
 
   source:
     repoURL: http://HOST-IP/my-group/sqatim.git

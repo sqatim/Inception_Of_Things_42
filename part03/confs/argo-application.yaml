@@ -4,7 +4,7 @@ metadata:
   name: app-argo-application
   namespace: argocd
 spec:
-  project: default
+  project: development
 
   source:
     repoURL: https://github.com/sqatim/sqatim.git
