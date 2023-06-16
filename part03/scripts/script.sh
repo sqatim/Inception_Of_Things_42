@@ -42,4 +42,5 @@ echo '\n-------------------------- Applying Config --------------------------'
 sleep 50
 sudo kubectl apply -n argocd -f ../confs/install.yaml
 sudo kubectl apply -n argocd -f ../confs/ingress.yaml
+sudo kubectl apply -n argocd -f ../confs/argo-appProject.yaml
 sudo kubectl apply -n argocd -f ../confs/argo-application.yaml

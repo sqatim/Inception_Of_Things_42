@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# change IP
+
+IP_ADDR=$(ip addr show | grep "inet " | tail -n 1 | awk '{print $2}' | awk -F '/' '{print $1}')
+
+sed -i "s/HOST-IP/$IP_ADDR/" ../confs/argocd/argo-application.yaml
+
 # Install docker
 echo '\n-------------------------- Install Docker --------------------------'
 sleep 10
@@ -43,6 +49,7 @@ echo '\n-------------------------- Applying Config --------------------------'
 sleep 50
 sudo kubectl apply -n argocd -f ../confs/argocd/install.yaml
 sudo kubectl apply -n argocd -f ../confs/argocd/ingress.yaml
+sudo kubectl apply -n argocd -f ../confs/argocd/argo-appProject.yaml
 sudo kubectl apply -f ../confs/gitlab/gitlab-pvcs.yml -n gitlab
 sudo kubectl apply -f ../confs/gitlab/gitlab-secret.yml -n gitlab
 sudo kubectl apply -f ../confs/gitlab/gitlab-deployment.yml -n gitlab

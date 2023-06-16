@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: http://10.12.100.155/my-group/sqatim.git
+    repoURL: http://HOST-IP/my-group/sqatim.git
     targetRevision: HEAD
     path: app
 
