@@ -17,6 +17,11 @@ Vagrant.configure("2") do |config|
     config.vm.box = "centos/7"
     config.vm.network "private_network", bridge: "eth1", ip: server_ip
     # config.trigger.after :up   do |trigger|
+    #   trigger.name = "---------------------------- UP Message ----------------------------"
+    #   trigger.info = "run script"
+    #   trigger.run = {inline: '/bin/sh /vagrant/scripts/script.sh'}
+    # end
+    # config.trigger.after :up   do |trigger|
     #   trigger.name = "Finished Message"
     #   trigger.info = "Machine is up!"
     #   trigger.run = {inline: 'vagrant scp sqatimS:/var/lib/rancher/k3s/server/node-token .'}
@@ -25,6 +30,7 @@ Vagrant.configure("2") do |config|
       sh.inline = <<-SCRIPT
       export INSTALL_K3S_EXEC="--bind-address=#{server_ip} --node-external-ip=#{server_ip} --flannel-iface=eth1"
       curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+      /bin/sh /vagrant/scripts/script.sh
       SCRIPT
     end
     config.vm.provider "virtualbox" do |vb|
